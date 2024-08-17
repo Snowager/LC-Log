@@ -21,8 +21,40 @@ public class ArrayHashSolutions {
 		}
 		return twoNum;
 	}
+
     /* Params: int array nums
-     * Return: boolean value */
+     * Return: boolean value 
+     * 287 
+     * https://leetcode.com/problems/find-the-duplicate-number/description/ */
+    public static boolean findDuplicate(int[] nums) { // --TODO-- refactor solution, add comments
+		HashMap<Integer, Integer> numMap = new HashMap<Integer, Integer>();
+		boolean even = false;
+		int div = (int) Math.floor(nums.length / 2);
+		if (nums.length % 2 == 0) {
+			even = true;
+		}
+		for (int x = 0; x < div; x++) {
+			if (!numMap.containsKey(nums[x])) {
+				numMap.put(nums[x], x);
+			} else {
+				return true;
+			}
+			if (!numMap.containsKey(nums[nums.length - (x + 1)])) {
+				numMap.put(nums[nums.length - (x + 1)], nums.length - (x + 1));
+			} else {
+				return true;
+			}
+		}
+		if (!even) {
+			if (!numMap.containsKey(nums[div])) {
+				numMap.put(nums[div], div);
+			} else {
+				return true;
+			}
+		}
+		return false;
+	}
+
     /* Params: int array nums
      * Return: boolean value
      * 217
