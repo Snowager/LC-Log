@@ -105,8 +105,8 @@ public class ArrayHashSolutions {
 		for (int x = 0; x < s.length(); x++) {
             compareMap.put(s.charAt(x), compareMap.getOrDefault(s.charAt(x), 0)+1); // add char count
 		}
-        for (int x = 0; x < s.length(); x++) {
-            compareMap.put(s.charAt(x), compareMap.getOrDefault(s.charAt(x), 0)-1); // remove char count
+        for (int x = 0; x < n.length(); x++) {
+            compareMap.put(n.charAt(x), compareMap.getOrDefault(n.charAt(x), 0)-1); // remove char count
 		}
         for (char value : compareMap.keySet()) {
             if (compareMap.get(value) != 0) {
