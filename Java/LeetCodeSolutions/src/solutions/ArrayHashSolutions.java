@@ -1,5 +1,6 @@
 package solutions;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class ArrayHashSolutions {
@@ -27,7 +28,7 @@ public class ArrayHashSolutions {
      * 287 
      * https://leetcode.com/problems/find-the-duplicate-number/description/ */
     public static boolean findDuplicate(int[] nums) { // --TODO-- refactor solution, add comments
-		HashMap<Integer, Integer> numMap = new HashMap<Integer, Integer>();
+		HashMap<Integer, Integer> numMap = new HashMap<>();
 		boolean even = false;
 		int div = (int) Math.floor(nums.length / 2);
 		if (nums.length % 2 == 0) {
@@ -71,4 +72,47 @@ public class ArrayHashSolutions {
         }
         return false; // reaching here means no duplicates encountered
     }
+
+    /* Params: String s, String n (strings to compare)
+     * Return: boolean value
+     * 242
+     * https://leetcode.com/problems/valid-anagram/description/ */ 
+    public static boolean isAnagram(String s, String n) {
+		if (s.length() != n.length()) {
+			return false; // can't be anagram if not same length
+		}
+		char[] sc = s.toCharArray();
+		char[] nc = n.toCharArray();
+		Arrays.sort(sc);
+		Arrays.sort(nc);
+		for (int x = 0; x < sc.length; x++) {
+			if (sc[x] != nc[x]) { // iterate arrays and compare chars for parity
+				return false;
+			}
+		}
+		return true;
+	}
+
+    /* Params: String s, String n (strings to compare)
+     * Return: boolean value
+     * 242
+     * https://leetcode.com/problems/valid-anagram/description/ */ 
+     public static boolean isAnagramSecondSolution(String s, String n) {
+		if (s.length() != n.length()) {
+			return false; // can't be anagram if not same length
+		}
+		HashMap<Character, Integer> compareMap = new HashMap<>(); // hashmap for comparison
+		for (int x = 0; x < s.length(); x++) {
+            compareMap.put(s.charAt(x), compareMap.getOrDefault(s.charAt(x), 0)+1); // add char count
+		}
+        for (int x = 0; x < s.length(); x++) {
+            compareMap.put(s.charAt(x), compareMap.getOrDefault(s.charAt(x), 0)-1); // remove char count
+		}
+        for (char value : compareMap.keySet()) {
+            if (compareMap.get(value) != 0) {
+                return false; // return false when the hashmap is not empty
+            }
+        }
+        return true;
+	}
 }
