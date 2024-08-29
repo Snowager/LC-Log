@@ -95,15 +95,18 @@ class Heap {
 var lastStoneWeight = function(stones) {
     const stoneHeap = new Heap();
 
-
+    // insert stones into heap
     for (let stone of stones) {
         stoneHeap.insert(stone);
     }
 
+    // while list is bigger than one, extract 2 maxes 
+    // and reinsert new value (if bigger than zero)
     while (stoneHeap.list.length > 1) {
         let stone1 = stoneHeap.extractMax();
         let stone2 = stoneHeap.extractMax();
         if (stone1 - stone2 > 0) stoneHeap.insert(stone1 - stone2);
     }
+    // return last in list or zero if nothing left in list
     return stoneHeap.list.length === 1 ? stoneHeap.list[0] : 0;
 };
