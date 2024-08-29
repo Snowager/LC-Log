@@ -1,9 +1,9 @@
-
-/* Params: strArr: String[]
-   Return: groupAnagramArr: String[][]
-   49
-   https://leetcode.com/problems/group-anagrams/description/ */
-function groupAnagram(strArr) {
+/**
+ * @param {string[]} strs
+ * @return {string[][]}
+ * 49
+ * https://leetcode.com/problems/group-anagrams/description/ */
+var groupAnagrams = function(strArr) {
     let groupAnagramArr = [];
     let anagramMap = new Map();
     // for each string, save sorted form as map key
@@ -23,3 +23,4 @@ function groupAnagram(strArr) {
     }
     return groupAnagramArr;
 }
+
